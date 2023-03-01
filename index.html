@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LueurTech Solutions Sign Up Webpage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="wrapper">
+        <div class="SignUp form">
+            <header>LueurTech SignUp Page</header>
+            <form action = "#">
+                <input type="text" placeholder="John Doe" id="username" required/>
+                <input type="text" placeholder="example@gmail.com" id="email" required/>
+                <input type="password" placeholder="Password" id="password1" onkeyup="return validate()" required/>
+                <input type="password" placeholder="Confirm Password" id="password2"  oninput="return confirm()" required/>
+                <div class="errors">
+                    <ul>
+                        <li id="upper"> Atleast One Uppercase</li>
+                        <li id="lower"> Atleast One Lowercase</li>
+                        <li id="specialchar"> Atleast One Special Symbols</li>
+                        <li id="number"> Atleast One Number</li>
+                        <li id="length"> Atleast 6 Characters</li>
+                    </ul>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="signupCheck" />
+                    <label for="signupCheck">I accept all terms and conditions</label>
+                </div>
+                <input type="Submit" value="SignUp"/>
+            </form>
+        </div>
+
+        <div class="login form">
+            <header>LueurTech Login Page</header>
+            <form action = "Welcome.html">
+                <input type="text" placeholder="John Doe" id="username" required/>
+                <input type="text" placeholder="example@gmail.com" id="email" required/>
+                <input type="password" placeholder="Password" id="password" required/>
+                <a href="#">Forgot Password?</a>
+                <input type="Submit" value="Login"/>
+            </form>
+        </div>
+
+        <script>
+            function validate(signupHeader) {
+                var password = document.getElementById('password1');
+                var upper = document.getElementById('upper');
+                var lower = document.getElementById('lower');
+                var num = document.getElementById('number');
+                var len = document.getElementById('length');
+                var specialchar = document.getElementById('specialchar');
+                //check if pass value contain a number
+                if(password.value.match(/[0-9]/)) {
+                    //match is a function which matches a regular expressions
+                    //password contain 0 to 9 number then
+
+                    num.style.color = 'green'
+                }
+                else {
+                    //otherwise
+                    num.style.color = 'red'
+                }
+
+                //password contain any upper character
+                if(password.value.match(/[A-Z]/)) {
+
+                    upper.style.color = 'green'
+                }
+                else {
+                    //otherwise
+                    upper.style.color = 'red'
+                }
+
+                //password contain any lower character
+                if(password.value.match(/[a-z]/)) {
+
+                    lower.style.color = 'green'
+                }
+                else {
+                    //otherwise
+                    lower.style.color = 'red'
+                }
+
+                //password contain any special symbol
+                if(password.value.match(/[!\@\#\$\%\^\&\*\(\)\_\-\+\=\?\>\<\.\,]/)) {
+
+                    specialchar.style.color = 'green'
+                }
+                else {
+                //otherwise
+                    specialchar.style.color = 'red'
+                }
+
+                //checking if password length is less than 6 characters
+                if(password.value.length < 6 ){
+                    //if password length is less than 6 then it won't take any values
+                    len.style.color = 'red'
+                }
+                else{
+                    //otherwise
+                    len.style.color = 'green'
+                }
+
+                }
+
+                function confirm() {
+                    var password1 = document.getElementById('password1');
+                    var password2 = document.getElementById('password2');
+                    if(password1.value == password2.value ) {
+                        document.getElementById('number').style.display = 'none';
+                        document.getElementById('upper').style.display = 'none';
+                        document.getElementById('lower').style.display = 'none';
+                        document.getElementById('length').style.display = 'none';
+                        document.getElementById('specialchar').style.display = 'none';
+                    }
+                    else {
+                        document.getElementById('number').style.display = 'block';
+                        document.getElementById('upper').style.display = 'block';
+                        document.getElementById('lower').style.display = 'block';
+                        document.getElementById('length').style.display = 'block';
+                        document.getElementById('specialchar').style.display = 'block';  
+                    }
+            }
+            const wrapper = document.querySelector(".wrapper"),
+            signupHeader = document.querySelector(".SignUp header"),
+            loginHeader = document.querySelector(".login header");
+
+        loginHeader.addEventListener("click", () => {
+            wrapper.classList.add("active");
+        });
+        
+        signupHeader.addEventListener("click", () => {
+            wrapper.classList.remove("active");
+        });
+        </script>
+    </section>
+</body>
+</html>
